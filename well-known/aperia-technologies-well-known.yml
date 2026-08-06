@@ -1,0 +1,55 @@
+generated: '2026-08-06'
+method: probed
+source: live probes of every Aperia host
+result: none
+note: >-
+  No /.well-known/ discovery document is served by Aperia Technologies. This file is the
+  record of the probe, not a discovery index — nothing returned a usable document, so no
+  WellKnown or SecurityTxt pointer is wired into apis.yml.
+soft_404_warning: >-
+  haloconnect.aperiatech.com answers EVERY unrouted path with HTTP 200 and an identical
+  2,576-byte HTML single-page-app shell. A control probe of /zzz-nonexistent-kin returned
+  the same status, content-type and byte count as /.well-known/agent-card.json, so every
+  200 below is a catch-all, not a document. Treating any of them as a hit would be false
+  credit.
+hosts:
+- host: https://haloconnect.aperiatech.com
+  catch_all: {status: 200, content_type: text/html, bytes: 2576, control_path: /zzz-nonexistent-kin}
+  documents:
+  - {path: /.well-known/security.txt, status: 200, verdict: soft-404-html-shell}
+  - {path: /.well-known/openid-configuration, status: 200, verdict: soft-404-html-shell}
+  - {path: /.well-known/oauth-authorization-server, status: 200, verdict: soft-404-html-shell}
+  - {path: /.well-known/api-catalog, status: 200, verdict: soft-404-html-shell}
+  - {path: /.well-known/ai-plugin.json, status: 200, verdict: soft-404-html-shell}
+  - {path: /.well-known/agent-card.json, status: 200, verdict: soft-404-html-shell}
+  - {path: /.well-known/agent.json, status: 200, verdict: soft-404-html-shell}
+- host: https://aperiatech.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: https://support.aperiatech.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /llms.txt, status: 200, content_type: text/markdown, file: ../llms/aperia-technologies-llms.txt}
+- host: https://api.aperiatechnologies.com
+  note: >-
+    Legacy host referenced in the PDF response examples (dev.aperiatechnologies.com deep-links).
+    Returns HTTP 403 application/json for every path including all /.well-known/* — an edge
+    deny, not a document. dev.aperiatechnologies.com and aperiatechnologies.com do not resolve.
+  documents:
+  - {path: /.well-known/security.txt, status: 403}
+  - {path: /.well-known/agent-card.json, status: 403}
+  - {path: /.well-known/agent.json, status: 403}
+a2a:
+  found: false
+  note: >-
+    No A2A Agent Card exists. Every 200 on an agent-card path was the haloconnect SPA shell,
+    so no a2a/ artifact was written — an agent card is search-only and must never be authored
+    on a provider's behalf.

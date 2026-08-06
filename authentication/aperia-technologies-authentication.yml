@@ -1,0 +1,57 @@
+generated: '2026-08-06'
+method: searched
+source: https://aperiatech.com/wp-content/uploads/2024/03/Halo-Connect-API-Documentation-v0.6.pdf
+docs: https://aperiatech.com/wp-content/uploads/2024/03/Halo-Connect-API-Documentation-v0.6.pdf
+note: >-
+  Aperia publishes no OpenAPI, so this profile is read from the published PDF API reference
+  ("Halo Connect API Documentation v0.6", revised 2021-04-16) and corroborated by live probes
+  of the Halo Connect API gateway. Only the scheme is recorded; no credential values appear
+  in the source document beyond an illustrative Base64 sample.
+summary:
+  types:
+  - http
+  http_schemes:
+  - basic
+  api_key_in: []
+  oauth2_flows: []
+  self_service_signup: false
+schemes:
+- name: BasicAuth
+  type: http
+  scheme: basic
+  in: header
+  parameter: Authorization
+  description: >-
+    HTTP Basic authentication (RFC 7617). The documentation instructs partners to send
+    "Authorization: Basic <Base64_encoded_string>", where the token is the Base64 encoding
+    of "email:password" — the same Halo Connect portal account credentials used to sign in
+    at haloconnect.aperiatech.com. There is no separate API key, no token exchange, and no
+    documented rotation or expiry.
+  sources:
+  - https://aperiatech.com/wp-content/uploads/2024/03/Halo-Connect-API-Documentation-v0.6.pdf
+credential_provisioning:
+  self_service: false
+  mechanism: >-
+    Halo Connect fleet accounts are created by an Aperia Technologies administrator; users
+    are invited by email and set a password. The same account credentials are what the
+    Partner API consumes, so API access follows portal provisioning rather than a developer
+    signup.
+  source: https://aperiatech.com/training/halo-connect-portal-training/
+observations:
+- observed: '2026-08-06'
+  url: https://haloconnect.aperiatech.com/api/partner/v1/vehicles
+  http_status: 401
+  body: '{"errorType":"UNAUTHORIZED","errorMessage":"Unauthorized"}'
+  note: >-
+    No WWW-Authenticate challenge header is returned with the 401, so the Basic scheme is
+    not advertised at the wire level — it is only documented in the PDF. The same 401 is
+    returned for unrouted /api/* paths, so a 401 does not confirm an individual endpoint.
+- observed: '2026-08-06'
+  url: https://haloconnect.aperiatech.com/api/v1/health
+  http_status: 200
+  body: '{"status":"UP"}'
+  note: The health endpoint is the one documented operation reachable anonymously.
+gaps:
+- No OAuth 2.0 or OpenID Connect; long-lived user credentials are sent on every request.
+- No documented key rotation, expiry, scoping or least-privilege model for partner access.
+- No /.well-known/openid-configuration or /.well-known/oauth-authorization-server on any host.

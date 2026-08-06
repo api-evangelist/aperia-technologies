@@ -1,0 +1,87 @@
+generated: '2026-08-06'
+method: searched
+probe: true
+source: https://aperia-technologies.secureframetrust.com/
+url: https://aperia-technologies.secureframetrust.com/
+platform: Secureframe Trust
+note: >-
+  Aperia's trust center is hosted on Secureframe's own domain and linked from the
+  aperiatech.com footer as "Certifications & Compliance", which is why the standard
+  trust.<domain> / <domain>/trust probe misses it.
+certifications:
+- SOC 2 Type II
+- ISO/IEC 27001
+- ISO 9001
+- GDPR
+- CCPA
+monitoring:
+  continuous: true
+  platform: Secureframe
+control_families:
+- Confidentiality
+- Organizational Management
+- Availability
+- Vulnerability Management
+- Incident Response
+- Risk Assessment
+- Network Security
+- Access Security
+- Communications
+- Change Management
+named_controls:
+- Data Classification Policy
+- Data Retention and Disposal Policy
+- Information Security Policy
+- Internal Control Monitoring
+- Acceptable Use Policy
+- Cybersecurity Insurance
+- Security Awareness Training
+- High Availability Configuration
+- Business Continuity and Disaster Recovery Policy
+- Vulnerability and Patch Management Policy
+- Incident Response Plan
+- Incident Response Plan Testing
+- Risk Assessment and Treatment Policy
+- Vendor Risk Management Policy
+- Network Security Policy
+- Unique Access IDs
+- Access to Product is Restricted
+- Asset Inventory
+- Software Change Testing
+- Change Management Policy
+- Secure Development Policy
+subprocessors:
+- name: AWS
+  purpose: Cloud services
+- name: Google
+  purpose: Communications, location services & mapping
+- name: Salesforce
+  purpose: CRM
+- name: Trend Micro
+  purpose: Network security
+- name: Atlassian
+  purpose: Development management
+- name: Microsoft
+  purpose: Software and cloud services
+documents:
+- name: Privacy Policy
+  url: https://aperiatech.com/privacy-policy
+- name: Halo Connect Terms of Service
+  url: https://aperiatech.com/master_terms
+- name: ISO 9001 Certificate
+  access: download from trust center
+- name: Request all documents
+  access: gated request form on the trust center
+gaps:
+- No vulnerability-disclosure or bug-bounty program is published; there is a
+  "Vulnerability and Patch Management Policy" control but no external reporting channel.
+- No /.well-known/security.txt (RFC 9116) on any Aperia host.
+- No named security contact address published on aperiatech.com.
+evidence:
+- url: https://aperia-technologies.secureframetrust.com/
+  status: 200
+  keywords: [trust center, soc 2 type ii, iso 27001, iso 9001, gdpr, ccpa, subprocessors]
+  fetched: '2026-08-06'
+- url: https://aperiatech.com/.well-known/security.txt
+  status: 404
+  fetched: '2026-08-06'

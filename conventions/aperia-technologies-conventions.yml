@@ -1,0 +1,119 @@
+generated: '2026-08-06'
+method: searched
+source: https://aperiatech.com/wp-content/uploads/2024/03/Halo-Connect-API-Documentation-v0.6.pdf
+note: >-
+  Cross-cutting request/response semantics of the Halo Connect Partner API, read from the
+  published PDF API reference and from response headers observed live on
+  haloconnect.aperiatech.com on 2026-08-06.
+api: aperia-technologies:halo-connect-partner-api
+base_url: https://haloconnect.aperiatech.com/api/partner/v1
+authentication:
+  style: http-basic
+  header: Authorization
+  detail: Basic Base64(email:password) — see authentication/aperia-technologies-authentication.yml
+idempotency:
+  supported: false
+  detail: >-
+    Every documented operation is a GET, so the surface is read-only and naturally idempotent,
+    but Aperia documents no idempotency key, no write operations and no retry contract. No
+    Idempotency pointer is emitted for this provider.
+pagination:
+  style: page-number
+  supported: true
+  params:
+  - name: page
+    description: Page number (integer).
+  - name: size
+    description: Page size (integer); default value is 20.
+  - name: sort
+    description: Sort direction, "asc" or "desc" (documented on /hardwareissues).
+  response:
+    envelope: >-
+      Inconsistent across operations. /api/partner/v1/hardwareissues wraps results in a
+      "content" array (a Spring Data Page shape); /api/partner/v1/issues and
+      /api/partner/v1/vehicles return a bare top-level JSON array in the published examples.
+      No total-count, page-count or next-link field is documented.
+  source: https://aperiatech.com/wp-content/uploads/2024/03/Halo-Connect-API-Documentation-v0.6.pdf
+conditional_requests:
+  supported: true
+  request_header: If-Modified-Since
+  format: ISO UTC datetime (e.g. "2020-04-28T12:16:12Z")
+  detail: >-
+    Documented on /api/partner/v1/issues: when the header is present only issues new or
+    updated after that instant are returned; when it is absent all issues are returned. This
+    is the provider's incremental-sync mechanism in place of a cursor or a since parameter.
+  deviation: >-
+    RFC 9110 If-Modified-Since expects an HTTP-date (IMF-fixdate), not an ISO 8601 "Z" datetime,
+    and expects a 304 Not Modified rather than a filtered collection. Aperia's use is a
+    filter parameter carried in a conditional-request header.
+filtering:
+  supported: true
+  detail: >-
+    Query-parameter filtering per collection — issues by vehicleId, accountId, gatewayId,
+    vehicleGroupId, severity, status, type, pressure and vin; vehicles by vin or
+    fleetVehicleId (one or the other, not both); hardware issues by vehicleId, accountId,
+    vehicleGroupId, hardwareType and status.
+  enumerations:
+    issue_severity: [MINOR, MAJOR, CRITICAL]
+    issue_status: [RESOLVED, UNRESOLVED]
+    issue_type: [OVERINFLATION, UNDERINFLATION, LEAK, BLOWOUT, MAINTENANCE, UNDERINFLATION_AND_LEAK]
+    hardware_type: [GATEWAY, SENSOR, GPS]
+    hardware_issue_status: [OPEN, CLOSED, SUSPECTED, ARCHIVED]
+  note: >-
+    The published /issues response example carries "status": "CLOSED" while the documented
+    status filter values are RESOLVED and UNRESOLVED — the reference contradicts itself on
+    the issue status vocabulary.
+field_expansion:
+  supported: false
+  detail: >-
+    No expand / fields / include parameter is documented. Related objects are embedded
+    inline instead — an issue carries a nested "vehicle" and "sensor" object, each including
+    a "url" deep-link back to the Halo Connect portal record.
+metadata:
+  supported: false
+request_tracing:
+  supported: true
+  response_header: x-corr-id
+  documented: false
+  detail: >-
+    Every response from haloconnect.aperiatech.com carries an x-corr-id correlation
+    identifier (observed values are short opaque strings, e.g. "3hIqot"). It is not mentioned
+    in the PDF reference, so partners are not told to log or quote it in support tickets.
+  observed: '2026-08-06'
+versioning:
+  scheme: uri-path
+  current: v1
+  detail: >-
+    /api/partner/v1/... for partner resources and /api/v1/health for the health check. The
+    document itself is separately versioned (v0.6, revised 2021-04-16); no policy ties
+    document versions to path versions.
+error_envelope:
+  format: custom
+  media_type: application/json
+  shape:
+    errorType: string
+    errorMessage: string
+  example: '{"errorType":"UNAUTHORIZED","errorMessage":"Unauthorized"}'
+  rfc9457: false
+  detail: See errors/aperia-technologies-problem-types.yml
+rate_limiting:
+  documented: false
+  headers_observed: []
+  detail: >-
+    No rate-limit policy is published and no RateLimit / X-RateLimit / Retry-After headers
+    were observed on the anonymous responses.
+content_negotiation:
+  request: none documented
+  response: application/json
+security_headers_observed:
+  strict_transport_security: max-age=63072000; includeSubDomains; preload
+  x_frame_options: DENY
+  x_content_type_options: nosniff
+  content_security_policy: "default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src 'self'; connect-src 'self'; font-src 'self'; manifest-src 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+  cors: Vary on Origin / Access-Control-Request-Method / Access-Control-Request-Headers
+  observed: '2026-08-06'
+cross_links:
+  errors: errors/aperia-technologies-problem-types.yml
+  authentication: authentication/aperia-technologies-authentication.yml
+  lifecycle: lifecycle/aperia-technologies-lifecycle.yml
+  conformance: conformance/aperia-technologies-conformance.yml

@@ -1,0 +1,65 @@
+generated: '2026-08-06'
+method: searched
+source: https://aperiatech.com/wp-content/uploads/2024/03/Halo-Connect-API-Documentation-v0.6.pdf
+api: aperia-technologies:halo-connect-partner-api
+versioning:
+  scheme: uri-path
+  current: v1
+  detail: >-
+    Partner resources are served under /api/partner/v1/ and the health check under /api/v1/.
+    No version negotiation header, no date-based version train, no documented policy for how
+    a v2 would be introduced or how long v1 is supported.
+document_versioning:
+  current: '0.6'
+  revised: '2021-04-16'
+  url: https://aperiatech.com/wp-content/uploads/2024/03/Halo-Connect-API-Documentation-v0.6.pdf
+  detail: >-
+    The API reference is a versioned PDF, republished under /wp-content/uploads/2024/03/,
+    but the document itself is still stamped "Revised: April 16, 2021". Nothing links the
+    document version to the API version, and there is no changelog of what moved between
+    document revisions.
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  detail: >-
+    No deprecation policy, no RFC 8594 Sunset or Deprecation header support, and no
+    end-of-life notice channel was found for the Partner API.
+sla:
+  url: null
+  uptime_target: null
+  detail: >-
+    No published SLA or uptime commitment for the Halo Connect platform or its API. The
+    Secureframe trust center records a "High Availability Configuration" control but states
+    no numeric target.
+status_page:
+  url: null
+  detail: >-
+    No status page found. status.aperiatech.com does not resolve (DNS failure, 2026-08-06)
+    and no Statuspage/Instatus/Better Stack property is linked from aperiatech.com,
+    support.aperiatech.com or haloconnect.aperiatech.com. The only health signal is the
+    API's own GET /api/v1/health, which is anonymous and returns {"status":"UP"}.
+  health_endpoint: https://haloconnect.aperiatech.com/api/v1/health
+health_check:
+  url: https://haloconnect.aperiatech.com/api/v1/health
+  method: GET
+  auth_required: false
+  response: '{"status":"UP"}'
+  observed: '2026-08-06'
+  http_status: 200
+changelog:
+  url: null
+  detail: >-
+    No dated API changelog or release-notes feed. Product announcements are published as
+    press releases and news features on aperiatech.com, not as versioned API changes.
+  product_news: https://aperiatech.com/press-releases
+deprecated_operations: []
+evidence:
+- url: https://status.aperiatech.com/
+  status: 0
+  note: DNS does not resolve
+- url: https://haloconnect.aperiatech.com/api/v1/health
+  status: 200
+- url: https://aperiatech.com/wp-content/uploads/2024/03/Halo-Connect-API-Documentation-v0.6.pdf
+  status: 200

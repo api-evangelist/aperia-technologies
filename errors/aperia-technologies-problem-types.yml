@@ -1,0 +1,81 @@
+generated: '2026-08-06'
+method: probed
+source: https://haloconnect.aperiatech.com/api/partner/v1/vehicles
+note: >-
+  Aperia publishes no OpenAPI and no error reference — the PDF API reference documents only
+  success examples. This catalog records the error envelope actually returned by the Halo
+  Connect API gateway, observed live on 2026-08-06, plus the issue-classification vocabulary
+  the API returns in payloads. Nothing here is inferred from a spec that does not exist.
+format: custom
+rfc9457: false
+media_type: application/json
+envelope:
+  fields:
+  - name: errorType
+    type: string
+    description: Machine-readable error class in SCREAMING_SNAKE_CASE.
+  - name: errorMessage
+    type: string
+    description: Human-readable message.
+  example: '{"errorType":"UNAUTHORIZED","errorMessage":"Unauthorized"}'
+  deviations:
+  - No type URI, no title/detail/instance — this is not RFC 9457 problem+json.
+  - Content-Type is omitted on the 401 response; the body is JSON but unannounced.
+  - No correlation identifier inside the body; the x-corr-id response header carries it.
+problems:
+- status: 401
+  errorType: UNAUTHORIZED
+  title: Unauthorized
+  detail: >-
+    Returned when the Authorization header is missing or the Basic credentials are rejected.
+    No WWW-Authenticate challenge accompanies it.
+  remediation: >-
+    Send Authorization: Basic Base64(email:password) using Halo Connect portal credentials
+    provisioned by an Aperia administrator.
+  observed:
+    url: https://haloconnect.aperiatech.com/api/partner/v1/vehicles
+    http_status: 401
+    fetched: '2026-08-06'
+  note: >-
+    The gateway returns this same 401 for unrouted paths under /api/ — verified with the
+    control path /api/partner/v1/zzznotreal — so a 401 is an authentication wall, not proof
+    that the requested resource exists. Anonymous callers cannot distinguish 401 from 404.
+unobservable:
+  detail: >-
+    4xx/5xx responses other than 401 could not be exercised without partner credentials, and
+    no error reference is published, so this catalog is deliberately short rather than padded.
+  gaps:
+  - No documented 400 validation-error shape for the enumerated query parameters
+    (severity, status, type, hardwareType).
+  - No documented 404 or 429; no rate-limit error contract.
+  - No published error-code registry.
+payload_classification_vocabulary:
+  note: >-
+    Not API errors — these are the tire and hardware fault classes the API returns inside
+    successful responses. Captured because they are the domain's real problem taxonomy.
+  source: https://aperiatech.com/wp-content/uploads/2024/03/Halo-Connect-API-Documentation-v0.6.pdf
+  issue_type:
+  - OVERINFLATION
+  - UNDERINFLATION
+  - LEAK
+  - BLOWOUT
+  - MAINTENANCE
+  - UNDERINFLATION_AND_LEAK
+  issue_severity:
+  - MINOR
+  - MAJOR
+  - CRITICAL
+  hardware_type:
+  - GATEWAY
+  - SENSOR
+  - GPS
+  hardware_issue_status:
+  - OPEN
+  - CLOSED
+  - SUSPECTED
+  - ARCHIVED
+  remediation_field: >-
+    Issue objects carry an "actions" array of human-readable remediation strings, plus a
+    "description" — e.g. a MAJOR UNDERINFLATION issue returns "Add air to the tire
+    immediately to avoid damaging the tire casing." This is the closest thing the API has to
+    machine-actionable remediation guidance.

@@ -1,18 +1,91 @@
 aid: aperia-technologies
 name: Aperia Technologies
-description: 'Aperia Technologies is a company surfaced via the API Evangelist harvest backlog (source:
-  secondary-market) and added to the network as a stub for full-pipeline profiling.'
+description: 'Aperia Technologies is a Burlingame, California vehicle-technology company
+  that builds active tire-inflation hardware and predictive tire-maintenance software
+  for commercial fleets. Its Halo automatic tire inflator bolts on at the wheel end and
+  uses wheel rotation to keep tires at their target pressure, while the Halo Connect
+  platform pairs that hardware with machine-learning analytics trained on billions of
+  real-world fleet miles to deliver tire health, leak detection, tread, load and
+  vibration insight across steer, drive and trailer positions. Halo Connect exposes a
+  partner REST API so fleet telematics, maintenance and TMS platforms can pull vehicle
+  records, inflation issues and hardware issues out of the Halo Connect portal.'
 url: https://raw.githubusercontent.com/api-evangelist/aperia-technologies/refs/heads/main/apis.yml
+image: https://aperiatech.com/wp-content/uploads/2023/01/aperia-logo-scaled.jpg
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-06'
 modified: '2026-08-06'
 tags:
 - Company
-apis: []
+- Tire Management
+- Fleet Management
+- Telematics
+- Transportation
+- Trucking
+- Automatic Tire Inflation
+- Predictive Maintenance
+- IoT
+- Connected Vehicle
+apis:
+- aid: aperia-technologies:halo-connect-partner-api
+  name: Halo Connect Partner API
+  description: 'The Halo Connect Partner API is the read-only REST integration surface
+    of the Halo Connect tire-management portal. Partners and fleet platforms authenticate
+    with HTTP Basic credentials and pull vehicle records (VIN, vehicle type, fleet
+    vehicle id, latest GPS geotag, last-data-received timestamp), tire inflation issues
+    (severity, status, type such as UNDERINFLATION / OVERINFLATION / LEAK / BLOWOUT /
+    MAINTENANCE, the sensor tyre position and the recommended remediation actions) and
+    hardware issues for gateways, sensors and GPS units. Collections are paged with
+    page/size and support conditional retrieval via If-Modified-Since.'
+  humanURL: https://aperiatech.com/product/halo-connect/
+  baseURL: https://haloconnect.aperiatech.com/api/partner/v1
+  tags:
+  - Tire Management
+  - Fleet Management
+  - Vehicles
+  - Telematics
+  - Issues
+  properties:
+  - type: APIReference
+    url: https://aperiatech.com/wp-content/uploads/2024/03/Halo-Connect-API-Documentation-v0.6.pdf
+  - type: Documentation
+    url: https://aperiatech.com/wp-content/uploads/2024/03/Halo-Connect-API-Documentation-v0.6.pdf
+  - type: Authentication
+    url: authentication/aperia-technologies-authentication.yml
+  - type: Conventions
+    url: conventions/aperia-technologies-conventions.yml
+  - type: ErrorCatalog
+    url: errors/aperia-technologies-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/aperia-technologies-lifecycle.yml
+  - type: Conformance
+    url: conformance/aperia-technologies-conformance.yml
+  x-evidence:
+    fetched: '2026-08-06'
+    api_reference:
+      url: https://aperiatech.com/wp-content/uploads/2024/03/Halo-Connect-API-Documentation-v0.6.pdf
+      http_status: 200
+      note: '"Halo Connect API Documentation v0.6", revised 2021-04-16, (c) Aperia
+        Technologies. Documents four GET operations against {host}: /api/partner/v1/issues,
+        /api/partner/v1/vehicles, /api/partner/v1/hardwareissues and /api/v1/health.'
+    base_url_probe:
+      url: https://haloconnect.aperiatech.com/api/v1/health
+      http_status: 200
+      body: '{"status":"UP"}'
+      note: Response matches the health example published in the PDF verbatim, which
+        is what resolves the PDF's {host} placeholder to haloconnect.aperiatech.com.
+    spec_note: >-
+      No OpenAPI, Swagger, GraphQL, AsyncAPI or MCP document was found on any Aperia host.
+      The published API reference is a PDF only. haloconnect.aperiatech.com answers every
+      unrouted path with a 2,576-byte SPA shell (HTTP 200) — /openapi.json, /swagger.json,
+      /v3/api-docs, /api-docs/swagger-config and every /.well-known/* path return that same
+      shell, so none of them is a spec. Under /api/* the gateway returns a blanket
+      401 {"errorType":"UNAUTHORIZED"} for real and non-existent paths alike (verified with
+      the control path /api/partner/v1/zzznotreal), so /api/v3/api-docs cannot be read and
+      individual documented operations cannot be confirmed anonymously. No OpenAPI has been
+      generated from the PDF: the documented operations beyond /api/v1/health are unverifiable
+      without partner credentials.
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -20,4 +93,47 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://forgeglobal.com/aperia-technologies_stock/
+  url: https://aperiatech.com/
+- type: Documentation
+  url: https://support.aperiatech.com/help-center.md
+- type: APIReference
+  url: https://aperiatech.com/wp-content/uploads/2024/03/Halo-Connect-API-Documentation-v0.6.pdf
+- type: GettingStarted
+  url: https://aperiatech.com/training/halo-connect-portal-training/
+- type: Support
+  url: https://support.aperiatech.com/
+- type: HelpCenter
+  url: https://support.aperiatech.com/help-center.md
+- type: Blog
+  url: https://aperiatech.com/blog
+- type: Login
+  url: https://haloconnect.aperiatech.com/login
+- type: Pricing
+  url: https://shop.aperiatech.com/products/halo
+- type: TermsOfService
+  url: https://aperiatech.com/master_terms
+- type: PrivacyPolicy
+  url: https://aperiatech.com/privacy-policy
+- type: TrustCenter
+  url: security/aperia-technologies-trust-center.yml
+- type: Compliance
+  url: https://aperia-technologies.secureframetrust.com/
+- type: LLMsTxt
+  url: llms/aperia-technologies-llms.txt
+- type: Authentication
+  url: authentication/aperia-technologies-authentication.yml
+- type: Conventions
+  url: conventions/aperia-technologies-conventions.yml
+- type: ErrorCatalog
+  url: errors/aperia-technologies-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/aperia-technologies-lifecycle.yml
+- type: Conformance
+  url: conformance/aperia-technologies-conformance.yml
+- type: DomainSecurity
+  url: security/aperia-technologies-domain-security.yml
+x-enrichment:
+  date: '2026-08-06'
+  status: enriched
+  artifacts_added: 9
+  pass: local-v1
