@@ -10,6 +10,17 @@ description: 'Aperia Technologies is a Burlingame, California vehicle-technology
   partner REST API so fleet telematics, maintenance and TMS platforms can pull vehicle
   records, inflation issues and hardware issues out of the Halo Connect portal.'
 url: https://raw.githubusercontent.com/api-evangelist/aperia-technologies/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://aperiatech.com/wp-content/uploads/2023/01/aperia-logo-scaled.jpg
 x-type: company
 x-source: harvest:secondary-market
