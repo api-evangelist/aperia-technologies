@@ -50,6 +50,17 @@ tags:
 - Automatic Tire Inflation
 - Predictive Maintenance
 - IoT
+- Connected Vehicles
+tags_raw:
+- Company
+- Tire Management
+- Fleet Management
+- Telematics
+- Transportation
+- Trucking
+- Automatic Tire Inflation
+- Predictive Maintenance
+- IoT
 - Connected Vehicle
 apis:
 - aid: aperia-technologies:halo-connect-partner-api
