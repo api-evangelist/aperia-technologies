@@ -1,0 +1,27 @@
+# Front Door AI Index — aperia-technologies — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: aperia-technologies
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: aperiatech.com
+  final_host: aperiatech.com
+  ownership: own
+  owner: aperia-technologies
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 1
+  host_score: 1
+  density: 0.38
+  words: 2600
+  tiers:
+    agentic: 0
+    core: 1
+    model: 0
+  ambiguous: 9
+  top_terms:
+    predictive: 8
+    machine learning: 1
+    smart: 1
