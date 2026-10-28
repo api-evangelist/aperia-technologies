@@ -64,5 +64,94 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Aperia Technologies is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/aperia-technologies_stock/
+Aperia Technologies is a Burlingame, California vehicle-technology company that builds active tire-inflation hardware and predictive tire-maintenance software for commercial fleets. Its Halo automatic tire inflator bolts on at the wheel end and uses wheel rotation to keep tires at their target pressure, while the Halo Connect platform pairs that hardware with machine-learning analytics trained on billions of real-world fleet miles to deliver tire health, leak detection, tread, load and vibration insight across steer, drive and trailer positions. Halo Connect exposes a partner REST API so fleet telematics, maintenance and TMS platforms can pull vehicle records, inflation issues and hardware issues out of the Halo Connect portal.
+
+**Areas:** Company · Tire Management · Fleet Management · Telematics · Transportation · Trucking · Automatic Tire Inflation · Predictive Maintenance · IoT · Connected Vehicles
+
+## Aperia Technologies on APIs.io
+
+Everything profiled for Aperia Technologies is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/aperia-technologies/](https://apis.io/providers/aperia-technologies/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [Halo Connect Partner API](https://apis.io/apis/aperia-technologies/halo-connect-partner-api/) — The Halo Connect Partner API is the read-only REST integration surface of the Halo Connect tire-management portal. Partners and fleet platforms authenticate…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Aperia Technologies Authentication](https://apis.io/security/aperia-technologies/aperia-technologies-authentication/)
+- [Aperia Technologies Domain Security](https://apis.io/security/aperia-technologies/aperia-technologies-domain-security/)
+- [Aperia Technologies Trust Center](https://apis.io/security/aperia-technologies/aperia-technologies-trust-center/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://aperiatech.com/)
+- [Documentation](https://support.aperiatech.com/help-center.md)
+- [Getting started](https://aperiatech.com/training/halo-connect-portal-training/)
+- [API reference](https://aperiatech.com/wp-content/uploads/2024/03/Halo-Connect-API-Documentation-v0.6.pdf)
+- [Pricing](https://shop.aperiatech.com/products/halo)
+- [Support](https://support.aperiatech.com/)
+- [Blog](https://aperiatech.com/blog)
+- [Compliance](https://aperia-technologies.secureframetrust.com/)
+- [Terms of service](https://aperiatech.com/master_terms)
+- [Privacy policy](https://aperiatech.com/privacy-policy)
+
+## API Evangelist rating
+
+**Kin Score 29.7** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 47.6 |
+| Access clarity | 46.1 |
+
+**Agent readiness 8.3** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | yes |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/aperia-technologies/](https://apis.io/providers/aperia-technologies/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Aperia Technologies: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/aperia-technologies/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
